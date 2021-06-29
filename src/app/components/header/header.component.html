@@ -1,0 +1,19 @@
+<header class="header" *ngIf="(headerContent | json) != '{}'">
+  <div *ngIf="headerContent.notification_bar.show_announcement"
+    [innerHTML]="headerContent.notification_bar.announcement_text | sanitizeHtml" class="note-div">
+  </div>
+  <div class="max-width header-div">
+    <div class="wrapper-logo"><a aria-current="page" class="logo-tag" title="Contentstack" href="/"><img class="logo"
+          src="{{headerContent.logo.url}}" alt="{{headerContent.logo.title}}" title="{{headerContent.logo.title}}"></a>
+    </div><input type="checkbox" class="menu-btn" id="menu-btn"><label class="menu-icon" for="menu-btn"><span
+        class="navicon"></span></label>
+    <nav class="menu">
+      <ul class="nav-ul header-ul">
+        <li *ngFor="let menu of headerContent.navigation_menu">
+          <a [ngClass]="{'active': activeLink===menu.page_reference[0].url}" href="{{ menu.page_reference[0].url }}">{{
+            menu.page_reference[0].title }}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

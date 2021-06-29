@@ -1,0 +1,20 @@
+<render-component *ngIf="(blogContent | json) != '{}' && blogContent.page_components.length > 0" [page]=page [pageComponents]=blogContent.page_components [entryUid]=articleContent.uid [contentTypeUid]="'blog_post'" [locale]=articleContent.locale> </render-component>
+
+<div *ngIf="(articleContent | json) != '{}'" class="blog-container">
+  <div class="blog-detail">
+    <h2>{{articleContent.title}}</h2>
+    <p>{{articleContent.date | date:'fullDate'}}, <strong>{{articleContent.author[0].title}}</strong></p>
+    <p [innerHTML]=articleContent.body></p>
+  </div>
+  <div *ngIf="articleContent.related_post.length > 0" class="blog-column-right">
+    <div class="related-post">
+      <h2>Related Post</h2>
+      <a *ngFor="let related of articleContent.related_post"  href="{{related.url}}">
+        <div>
+          <h4>{{related.title}}</h4>
+          <p [innerHTML]=related.body.slice(0,80)></p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

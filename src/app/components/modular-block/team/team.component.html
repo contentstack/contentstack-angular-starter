@@ -1,0 +1,15 @@
+<div *ngIf="(team | json) != '{}'" class="about-team-section">
+  <div class="team-head-section">
+    <h2>{{team.title_h2}}</h2>
+    <p>{{team.description}}</p>
+  </div>
+  <div class="team-content">
+    <div *ngFor="let employee of team.employees" class="team-details">
+      <img alt="{{employee.image.title}}" src="{{employee.image.url}}">
+      <div class="team-details">
+        <h4>{{employee.name}}</h4>
+        <p>{{employee.designation}}</p>
+      </div>
+    </div>
+  </div>
+</div>

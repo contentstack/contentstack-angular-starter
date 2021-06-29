@@ -1,0 +1,36 @@
+<div *ngIf="(sectionBuckets | json) != '{}'" class="member-main-section">
+  <div class="member-head">
+    <h2>{{sectionBuckets.title_h2}}</h2>
+    <p *ngIf="page != 'About'">{{sectionBuckets.description}}</p>
+  </div>
+
+  <div *ngIf="page != 'About'" class="member-section">
+    <div *ngFor="let bucket of sectionBuckets.buckets" class="content-section">
+      <img src="{{bucket.icon.url}}" alt="bucket icon">
+      <h3>{{bucket.title_h3}}</h3>
+      <p [innerHTML]=bucket.description></p>
+      <a href="{{bucket.call_to_action.href}}">{{bucket.call_to_action.title}} --&gt;</a>
+    </div>
+  </div>
+
+  <div *ngIf="page === 'About'" class="mission-section">
+    <div class="mission-content-top">
+      <div *ngFor="let bucket of sectionBuckets.buckets.slice(2,4)" class="mission-content-section">
+        <img class="mission-icon" src="{{bucket.icon.url}}" alt="{{bucket.icon.title}}">
+        <div class="mission-section-content">
+          <h3>{{bucket.title_h3}}</h3>
+          <p [innerHTML]=bucket.description></p>
+        </div>
+      </div>
+    </div>
+    <div class="mission-content-bottom">
+      <div *ngFor="let bucket of sectionBuckets.buckets.slice(0,2)" class="mission-content-section">
+        <img class="mission-icon" src="{{bucket.icon.url}}" alt="{{bucket.icon.title}}">
+        <div class="mission-section-content">
+          <h3>{{bucket.title_h3}}</h3>
+          <p [innerHTML]=bucket.description></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

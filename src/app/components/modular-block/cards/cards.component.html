@@ -1,0 +1,7 @@
+<div *ngIf="cards.cards.length > 0" class="demo-section">
+  <div *ngFor="let card of cards.cards" class="cards">
+    <h3>{{card.title_h3}}</h3>
+    <p>{{card.description}}</p>
+    <div class="card-cta"><a class="btn primary-btn" href="{{card.call_to_action.href}}">{{card.call_to_action.title}}</a></div>
+  </div>
+</div>

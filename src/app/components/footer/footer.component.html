@@ -1,0 +1,26 @@
+<footer *ngIf="(footerContent | json) != '{}'">
+  <div class="max-width footer-div">
+    <div class="col-quarter"><a aria-current="page" class="logo-tag" href="/"><img src="{{footerContent.logo.url}}"
+          alt="Company Name" title="Company Name" class="logo footer-logo"></a></div>
+    <div class="col-half">
+      <nav>
+        <ul class="nav-ul">
+          <li class="footer-nav-li" *ngFor="let link of footerContent.navigation.link">
+            <a href="{{ link.href }}">{{ link.title }}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-quarter social-link">
+      <div class="social-nav">
+        <a class="footer-social-links" *ngFor="let socialIcon of footerContent.social.social_share"
+          href="{{socialIcon.link.href}}" title="{{socialIcon.link.title}}">
+          <img src="{{socialIcon.icon.url}}" alt="{{socialIcon.link.title}}">
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <p [innerHtml]=footerContent.copyright></p>
+  </div>
+</footer>

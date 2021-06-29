@@ -1,0 +1,15 @@
+<div *ngIf="embed.html_code_alignment === 'Left'" class="contact-page-section max-width">
+  <div class="contact-page-content">
+    <h1>{{embed.title}}</h1>
+    <p [innerHTML]=embed.description></p>
+  </div>
+  <div [innerHTML]="embed.html_code | sanitizeHtml" class="contact-page-form">
+  </div>
+</div>
+<div *ngIf="embed.html_code_alignment === 'Right'" class="contact-maps-section max-width">
+  <div class="maps-details" [innerHTML]="embed.html_code | sanitizeHtml"></div>
+  <div class="contact-maps-content">
+    <h2>{{embed.title}}</h2>
+    <p [innerHTML]=embed.description></p>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div *ngIf="(blogEntry | json) != '{}'" class="hero short">
+  <render-component [page]=page [pageComponents]=blogEntry.page_components [entryUid]=blogEntry.uid [contentTypeUid]="'page'" [locale]=blogEntry.locale></render-component>
+  <div class="blog-container">
+    <div class="blog-column-left">
+      <div *ngFor="let blog of blogContent" class="blog-list">
+        <a href="{{blog.url}}">
+          <img alt="blog.featured_image.title" class="blog-list-img" src="{{blog.featured_image.url}}">
+        </a>
+        <div class="blog-content">
+          <a href="{{blog.url}}">
+            <h3>{{blog.title}}</h3>
+          </a>
+          <p>{{blog.date | date:'fullDate'}}, <strong>{{blog.author[0].title}}</strong></p>
+          <p [innerHTML]=blog.body.slice(0,300)> </p>
+          <a href="{{blog.url}}"><span>Read more --></span></a>
+        </div>
+      </div>
+    </div>
+    <div class="blog-column-right">
+      <h2>Archived Blogs </h2>
+      <a *ngFor="let archived of archivedContent" href="{{archived.url}}">
+        <h4>{{archived.title}}</h4>
+        <p [innerHTML]="archived.body.slice(0, 80)"> </p>
+      </a>
+    </div>
+  </div>
+</div>

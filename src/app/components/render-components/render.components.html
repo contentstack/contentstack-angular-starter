@@ -1,0 +1,21 @@
+<div *ngIf="(pageComponents | json) != '{}'" class="main" attr.data-pageref="{{entryUid}}" attr.data-contenttype="{{contentTypeUid}}" attr.data-locale="{{locale}}">
+  
+    <div *ngFor="let component of pageComponents">
+
+      <app-hero *ngIf="component.hero_banner" [page]=page [hero]=component.hero_banner> </app-hero>
+
+      <app-content *ngIf="component.section" [content]=component.section> </app-content>
+
+      <app-buckets *ngIf="component.section_with_buckets" [page]=page [sectionBuckets]=component.section_with_buckets>
+      </app-buckets>
+
+      <from-blog *ngIf="component.from_blog" [blog]=component.from_blog></from-blog>
+
+      <app-cards *ngIf="component.section_with_cards" [cards]=component.section_with_cards></app-cards>
+
+      <embed-section *ngIf="component.section_with_html_code" [embed]=component.section_with_html_code></embed-section>
+
+      <team-section *ngIf="component.our_team" [team]=component.our_team></team-section>
+    </div>
+  
+</div>

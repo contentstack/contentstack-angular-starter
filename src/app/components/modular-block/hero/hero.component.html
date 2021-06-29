@@ -1,0 +1,12 @@
+<div *ngIf="(hero | json) != '{}'" [ngClass]="(page === 'Blog')?'blog-page-banner':'hero-banner'"
+  style="background: {{hero.bg_color}}">
+  <div
+    [ngClass]="{'about-content': page === 'About', 'blog-page-content': page === 'Blog', 'home-content': page === 'Home' }">
+    <h1 class="hero-title">{{hero.banner_title}}</h1>
+    <p class="hero-description false" [ngClass]="{'about-desc': page === 'About'}">
+      {{hero.banner_description}}</p>
+    <a *ngIf="page !== 'Blog'" aria-current="page" href="{{hero.call_to_action.url}}"
+      class="btn tertiary-btn">{{hero.call_to_action.title}}</a>
+  </div>
+  <img *ngIf="page !== 'Blog' && hero.banner_image" alt="{{hero.banner_image.title}}" src="{{hero.banner_image.url}}">
+</div>

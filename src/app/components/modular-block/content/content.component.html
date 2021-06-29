@@ -1,0 +1,8 @@
+<div *ngIf="(content | json) != '{}'" class="home-advisor-section">
+  <img alt="content.image.title" src="{{content.image.url}}">
+  <div class="home-content">
+    <h2>{{content.title_h2}}</h2>
+    <p>{{content.description}}</p>
+    <a aria-current="page" class="btn secondary-btn" href="{{content.href}}">{{content.call_to_action.title}}</a>
+  </div>
+</div>

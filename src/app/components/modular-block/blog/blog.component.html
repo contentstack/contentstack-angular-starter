@@ -1,0 +1,16 @@
+<div class="community-section">
+  <div class="community-head">
+    <h2>{{blog.title_h2}}</h2>
+    <a class="btn secondary-btn article-btn" href="{{blog.view_articles.href}}">{{blog.view_articles.title}}</a>
+  </div>
+  <div class="home-featured-blogs">
+    <div *ngFor="let featuredBlog of blog.featured_blogs" class="featured-blog">
+      <img src="{{featuredBlog.featured_image.url}}" alt="{{featuredBlog.featured_image.title}}" class="blog-post-img">
+      <div class="featured-content">
+        <h3>{{featuredBlog.title}}</h3>
+        <p [innerHTML]=featuredBlog.body.slice(0,300)></p>
+        <a class="blogpost-readmore" href="{{featuredBlog.url}}">Read More --></a>
+      </div>
+    </div>
+  </div>
+</div>
