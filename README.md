@@ -1,11 +1,12 @@
-[![Contentstack](/static/contentstack-readme-logo.png)](https://www.contentstack.com/)
+[![Contentstack](https://camo.githubusercontent.com/d24f513afa94a4a762533d54a0f590300dbd0413/68747470733a2f2f7777772e636f6e74656e74737461636b2e636f6d2f646f63732f7374617469632f696d616765732f636f6e74656e74737461636b2e706e67)](https://www.contentstack.com/)
 
 
-# Build Website using Angular and Contentstack
+# Build a Starter Website with Angular and Contentstack
 
-About Contentstack: Contentstack is a headless CMS with an API-first approach that puts content at the centre. It is designed to simplify the process of publication by separating code from content.
+Contentstack is a headless CMS with an API-first approach that puts content at the centre. It is designed to simplify the process of publication by separating code from content.
 
-About this project: Create a professional website using Angular and Contentstack.
+Angular is an application design framework and development platform for creating efficient and sophisticated single-page apps.
+
 
 
 ![contentstack-angular-starter-app](/static/readme.png)
@@ -17,12 +18,12 @@ You can check the [live demo](https://angular-starter-app-contentstack.vercel.ap
 
 ## Tutorial
 
-We have created an in-depth tutorial on how you can create your application using Contentstack Javascript SDK. By following the steps given in the tutorial, you will be able to initialise and fetch entries from Contentstack though provided Javascript SDK.
+We have created an in-depth tutorial on how you can create a starter website using Contentstack's Node.js SDK and fetch its content from Contentstack.
 
-[Build Website using Angular and Contentstack](https://www.contentstack.com/docs/example-apps/build-a-website-using-angular-and-contentstack)
+[Build Website using Angular and Contentstack](https://www.contentstack.com/docs/developers/sample-apps/build-a-starter-website-with-angular-and-contentstack/)
 
 
-## Documentation
+**More Resources**
 
 Read Contentstack [docs](https://www.contentstack.com/docs/)
 
