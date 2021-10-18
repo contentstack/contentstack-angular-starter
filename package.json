@@ -1,6 +1,6 @@
 {
   "name": "@contentstack/contentstack-angular-starter-app",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -19,7 +19,9 @@
     "@angular/platform-browser-dynamic": "11.2.10",
     "@angular/router": "11.2.10",
     "@angular/service-worker": "11.2.10",
+    "@ngrx/store": "^12.5.0",
     "contentstack": "3.13.1",
+    "ngx-json-viewer": "^3.0.2",
     "rxjs": "6.6.0",
     "zone.js": "0.11.3"
   },

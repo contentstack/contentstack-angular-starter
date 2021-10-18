@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ContentstackQueryService } from '../../cs.query.service';
 import { SeoService } from '../../seo.service';
 import { Meta } from '@angular/platform-browser';
+import { Store } from '@ngrx/store';
+import { actionBlogpost, actionPage } from 'src/app/store/actions/state.actions';
 
 @Component({
   selector: 'app-blog',
@@ -9,7 +11,7 @@ import { Meta } from '@angular/platform-browser';
   styleUrls: []
 })
 export class BlogComponent implements OnInit {
-  constructor(private cs: ContentstackQueryService, private seo: SeoService, private metaTagService: Meta) { }
+  constructor(private cs: ContentstackQueryService, private seo: SeoService, private metaTagService: Meta, private store: Store) { }
   page = 'Blog';
   blogEntry: any = {};
   blogContent: any = [];
@@ -21,6 +23,8 @@ export class BlogComponent implements OnInit {
     ]).then(entries => {
       this.blogEntry = entries[0][0][0];
       this.filterBlogTypes(entries[1][0]);
+      this.store.dispatch(actionPage({ page: entries[0][0][0] }));
+      this.store.dispatch(actionBlogpost({ blogpost: entries[1][0] }));
       if (this.blogEntry.seo) { this.seo.getSeoField(this.blogEntry.seo, this.metaTagService); }
     }, err => {
       console.log(err, 'err');

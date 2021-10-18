@@ -21,6 +21,10 @@ import { EmbedComponent } from './components/modular-block/embed/embed.component
 import { TeamComponent } from './components/modular-block/team/team.component';
 import { SanitizeHtmlPipe } from 'src/modules/SanitizeHtmlPipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { StoreModule } from '@ngrx/store';
+import {stateReducer} from './store/reducers/state.reducer';
+import { DevtoolsComponent } from './components/devtools/devtools.component';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 @NgModule({
   declarations: [
@@ -40,12 +44,15 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     CardsComponent,
     EmbedComponent,
     TeamComponent,
-    SanitizeHtmlPipe
+    SanitizeHtmlPipe,
+    DevtoolsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxJsonViewerModule,
     ContentstackModule.initializeApp(Config),
+    StoreModule.forRoot({ response: stateReducer }),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

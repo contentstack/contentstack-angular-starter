@@ -1,6 +1,10 @@
 <header class="header" *ngIf="(headerContent | json) != '{}'">
-  <div *ngIf="headerContent.notification_bar.show_announcement"
-    [innerHTML]="headerContent.notification_bar.announcement_text | sanitizeHtml" class="note-div">
+  <div class="note-div">
+    <span *ngIf="headerContent.notification_bar.show_announcement"
+      [innerHTML]="headerContent.notification_bar.announcement_text | sanitizeHtml"></span>
+    <span class="devtools" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      <i class="fas fa-tools fa-lg"></i>
+    </span>
   </div>
   <div class="max-width header-div">
     <div class="wrapper-logo"><a aria-current="page" class="logo-tag" title="Contentstack" href="/"><img class="logo"

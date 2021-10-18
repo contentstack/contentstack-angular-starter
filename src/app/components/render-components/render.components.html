@@ -1,5 +1,8 @@
-<div *ngIf="(pageComponents | json) != '{}'" class="main" attr.data-pageref="{{entryUid}}" attr.data-contenttype="{{contentTypeUid}}" attr.data-locale="{{locale}}">
-  
+<main>
+  <app-devtools></app-devtools>
+  <div *ngIf="(pageComponents | json) != '{}'" class="main" attr.data-pageref="{{entryUid}}"
+    attr.data-contenttype="{{contentTypeUid}}" attr.data-locale="{{locale}}">
+
     <div *ngFor="let component of pageComponents">
 
       <app-hero *ngIf="component.hero_banner" [page]=page [hero]=component.hero_banner> </app-hero>
@@ -17,5 +20,6 @@
 
       <team-section *ngIf="component.our_team" [team]=component.our_team></team-section>
     </div>
-  
-</div>
+
+  </div>
+</main>

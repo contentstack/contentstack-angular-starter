@@ -1,0 +1,16 @@
+<div class='modal fade' id='staticBackdrop' data-bs-backdrop='static' data-bs-keyboard='false' tabIndex='-1'
+    aria-labelledby='staticBackdropLabel' aria-hidden='true'>
+    <div class='modal-dialog modal-lg'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h2 class='modal-title' id='staticBackdropLabel'>
+                    Json Response
+                </h2>
+                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+            </div>
+            <div class='modal-body'>
+                <ngx-json-viewer [json]="response$ | async" [expanded]="false"></ngx-json-viewer>
+            </div>
+        </div>
+    </div>
+</div>
