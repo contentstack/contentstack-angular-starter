@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SeoService } from '../../seo.service';
 import { Meta } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
+import { actionBlogpost, actionPage } from 'src/app/store/actions/state.actions';
 
 @Component({
   selector: 'app-article',
@@ -16,6 +17,27 @@ export class ArticleComponent implements OnInit {
   page = 'Blog';
   articleContent: any = {};
   blogContent: any = {};
+  filterObject(inputObject) {
+    const unWantedProps = [
+      "uid",
+      "_version",
+      "ACL",
+      "_in_progress",
+      "created_at",
+      "created_by",
+      "updated_at",
+      "updated_by",
+      "publish_details",
+    ];
+    for (const key in inputObject) {
+      unWantedProps.includes(key) && delete inputObject[key];
+      if (typeof inputObject[key] !== "object") {
+        continue;
+      }
+      inputObject[key] = this.filterObject(inputObject[key]);
+    }
+    return inputObject;
+  }
   getEntry() {
     Promise.all([
       this.cs.getEntryWithQuery('page', { key: 'url', value: '/blog' }, []),
@@ -23,8 +45,10 @@ export class ArticleComponent implements OnInit {
     ]).then(entries => {
       this.blogContent = entries[0][0][0];
       this.articleContent = entries[1][0][0];
-      this.store.dispatch(actionPage({ page: entries[0][0][0] }));
-      this.store.dispatch(actionBlogpost({ blogpost: entries[1][0][0] }));
+      const pageData = this.filterObject(entries[0][0][0]);
+      const blogData = this.filterObject(entries[1][0][0]);
+      this.store.dispatch(actionPage({ page: pageData }));
+      this.store.dispatch(actionBlogpost({ blogpost: blogData }));
       if (this.articleContent.seo) { this.seo.getSeoField(this.articleContent.seo, this.metaTagService); }
     }, err => {
       console.log(err, 'err');
@@ -34,11 +58,3 @@ export class ArticleComponent implements OnInit {
     this.getEntry();
   }
 }
-function actionPage(arg0: { page: any; }): any {
-  throw new Error('Function not implemented.');
-}
-
-function actionBlogpost(arg0: { blogpost: any; }): any {
-  throw new Error('Function not implemented.');
-}
-

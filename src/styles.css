@@ -5,7 +5,7 @@ body {
   line-height: 22px;
 }
 
-h1, h2, h3 {
+h1, h2, h3 h4 {
   font-weight: bold;
   letter-spacing: 0.2px;
 }
@@ -20,7 +20,7 @@ body h2 {
   line-height: 34px;
 }
 
-body h3 {
+body h3, h4 {
   font-size: 18px;
   line-height: 24px;
 }
@@ -44,7 +44,7 @@ body p {
   background: #f2efff;
 }
 
-.note-div span p {
+.note-div p {
   margin: 0 auto;
   text-align: center;
   padding: 5px 0;
@@ -210,10 +210,19 @@ footer a {
   color: #715cdd;
 }
 
+.secondary-btn:hover{
+  color: #715cdd;
+  font-weight: bold;
+}
+
 .tertiary-btn {
   background: #ffffff;
   color: #715cdd;
   font-weight: bold;
+}
+
+.tertiary-btn:hover{
+  color: #5c49be;
 }
 
 .text-field textarea {
@@ -747,7 +756,7 @@ footer a {
   nav ul li {
     padding: 15px 0;
   }
-  h1 h2 h3 {
+  h1 h2 h3 h4 {
     font-weight: bold;
     letter-spacing: 0.1px;
   }
@@ -979,7 +988,7 @@ footer a {
     line-height: 24px;
     letter-spacing: 0.1px;
   }
-  body h3 {
+  body h3,body h4 {
     font-weight: bold;
     font-size: 14px;
     line-height: 24px;

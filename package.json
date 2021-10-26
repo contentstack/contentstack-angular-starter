@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 3000",
     "build": "npm run config && npm run ng build",
     "lint": "ng lint",
     "config": "ts-node setenv.ts"

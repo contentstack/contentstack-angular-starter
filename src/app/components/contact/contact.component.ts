@@ -14,10 +14,32 @@ export class ContactComponent implements OnInit {
   constructor(private cs: ContentstackQueryService, private metaTagService: Meta, private seo: SeoService, private store: Store) { }
   page = 'Contacts';
   contactContent: any = {};
+  filterObject(inputObject) {
+    const unWantedProps = [
+      "uid",
+      "_version",
+      "ACL",
+      "_in_progress",
+      "created_at",
+      "created_by",
+      "updated_at",
+      "updated_by",
+      "publish_details",
+    ];
+    for (const key in inputObject) {
+      unWantedProps.includes(key) && delete inputObject[key];
+      if (typeof inputObject[key] !== "object") {
+        continue;
+      }
+      inputObject[key] = this.filterObject(inputObject[key]);
+    }
+    return inputObject;
+  }
   getEntry() {
     this.cs.getEntryWithQuery('page', { key: 'url', value: '/contact-us' }).then(entry => {
       this.contactContent = entry[0][0];
-      this.store.dispatch(actionPage({ page: entry[0][0] }));
+      const jsonData = this.filterObject(entry[0][0]);
+      this.store.dispatch(actionPage({ page: jsonData }));
       this.store.dispatch(actionBlogpost({ blogpost: null }));
       if (this.contactContent.seo) { this.seo.getSeoField(this.contactContent.seo, this.metaTagService); }
     }, err => {
