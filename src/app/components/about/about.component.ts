@@ -37,7 +37,8 @@ export class AboutComponent implements OnInit {
     return inputObject;
   }
   getEntry() {
-    this.cs.getEntryWithQuery('page', { key: 'url', value: '/about-us' }).then(entry => {
+    this.cs.getEntryWithQuery('page', { key: 'url', value: '/about-us' }, [], 
+    ["page_components.section_with_buckets.buckets.description",]).then(entry => {
       this.aboutContent = entry[0][0];
       const jsonData = this.filterObject(entry[0][0])
       this.store.dispatch(actionPage({ page: jsonData }));

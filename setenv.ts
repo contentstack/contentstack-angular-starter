@@ -1,7 +1,7 @@
 const { writeFile } = require('fs');
+require('dotenv').config();
 
 const targetPath = './src/environments/environment.ts';
-console.log(process.env);
 
 // we have access to our environment variables in the process.env
 const environmentFileContent = `
@@ -12,14 +12,14 @@ export const environment = {
 export const Config = {
   api_key: '${process.env.CONTENTSTACK_API_KEY}',
   delivery_token: '${process.env.CONTENTSTACK_DELIVERY_TOKEN}',
-  environment: '${process.env.CONTENTSTACK_PUBLISH_ENVIRONMENT}',
-  region: '${process.env.REGION || 'us'}'
+  environment: '${process.env.CONTENTSTACK_ENVIRONMENT}',
+  region: '${process.env.CONTENTSTACK_REGION || 'us'}'
 };`;
 
 // write the content to the respective file if env exists
 if (process.env.CONTENTSTACK_API_KEY
-    && process.env.CONTENTSTACK_DELIVERY_TOKEN
-    && process.env.CONTENTSTACK_PUBLISH_ENVIRONMENT)
+  && process.env.CONTENTSTACK_DELIVERY_TOKEN
+  && process.env.CONTENTSTACK_ENVIRONMENT)
   writeFile(targetPath, environmentFileContent, function (err) {
     if (err) {
       console.log(err);

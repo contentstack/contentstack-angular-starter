@@ -40,7 +40,7 @@ export class BlogComponent implements OnInit {
   getEntry() {
     Promise.all([
       this.cs.getEntryWithQuery('page', { key: 'url', value: '/blog' }),
-      this.cs.getEntry('blog_post', ['author', 'related_post'])
+      this.cs.getEntry('blog_post', ['author', 'related_post'], ["body"])
     ]).then(entries => {
       this.blogEntry = entries[0][0][0];
       this.filterBlogTypes(entries[1][0]);
