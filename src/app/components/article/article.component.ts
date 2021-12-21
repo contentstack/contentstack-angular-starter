@@ -41,7 +41,7 @@ export class ArticleComponent implements OnInit {
   getEntry() {
     Promise.all([
       this.cs.getEntryWithQuery('page', { key: 'url', value: '/blog' }, []),
-      this.cs.getEntryWithQuery('blog_post', { key: 'url', value: this.router.url }, ['author', 'related_post'])
+      this.cs.getEntryWithQuery('blog_post', { key: 'url', value: this.router.url }, ['author', 'related_post'], ["body", "related_post.body"])
     ]).then(entries => {
       this.blogContent = entries[0][0][0];
       this.articleContent = entries[1][0][0];

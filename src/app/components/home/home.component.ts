@@ -37,15 +37,19 @@ export class HomeComponent implements OnInit {
     return inputObject;
   }
   getEntry() {
-    this.cs.getEntryWithQuery('page', { key: 'url', value: '/' }, ['page_components.from_blog.featured_blogs']).then(entry => {
-      this.homeContent = entry[0][0];
-      const jsonData = this.filterObject(entry[0][0])
-      this.store.dispatch(actionPage({ page: jsonData }));
-      this.store.dispatch(actionBlogpost({ blogpost: null }));
-      if (this.homeContent.seo) { this.seo.getSeoField(this.homeContent.seo, this.metaTagService); }
-    }, err => {
-      console.log(err);
-    });
+    this.cs.getEntryWithQuery('page', { key: 'url', value: '/' },
+      ['page_components.from_blog.featured_blogs'],
+      ["page_components.from_blog.featured_blogs.body",
+        "page_components.section_with_buckets.buckets.description",]).then(entry => {
+          this.homeContent = entry[0][0];
+          const jsonData = this.filterObject(entry[0][0])
+          this.store.dispatch(actionPage({ page: jsonData }));
+          this.store.dispatch(actionBlogpost({ blogpost: null }));
+          if (this.homeContent.seo) { this.seo.getSeoField(this.homeContent.seo, this.metaTagService); }
+        }, err => {
+          console.log(err);
+
+        });
 
   }
   ngOnInit(): void {

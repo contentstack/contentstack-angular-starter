@@ -36,7 +36,7 @@ export class ContactComponent implements OnInit {
     return inputObject;
   }
   getEntry() {
-    this.cs.getEntryWithQuery('page', { key: 'url', value: '/contact-us' }).then(entry => {
+    this.cs.getEntryWithQuery('page', { key: 'url', value: '/contact-us' }, [],[ "page_components.section_with_html_code.description"]).then(entry => {
       this.contactContent = entry[0][0];
       const jsonData = this.filterObject(entry[0][0]);
       this.store.dispatch(actionPage({ page: jsonData }));

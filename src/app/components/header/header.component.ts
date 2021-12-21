@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
     return inputObject;
   }
   getEntry() {
-    this.cs.getEntry('header', ['navigation_menu.page_reference']).then(entry => {
+    this.cs.getEntry('header', ['navigation_menu.page_reference'],["notification_bar.announcement_text"]).then(entry => {
       this.activeLink = this.router.url;
       this.headerContent = entry[0][0];
       const jsonData = this.filterObject(entry[0][0]);

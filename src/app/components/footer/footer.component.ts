@@ -33,7 +33,7 @@ export class FooterComponent implements OnInit {
     return inputObject;
   }
   getFooterEntry() {
-    this.cs.getEntry('footer').then(entry => {
+    this.cs.getEntry('footer', [],["copyright"]).then(entry => {
       this.footerContent = entry[0][0];
       const jsonData = this.filterObject(entry[0][0])
       this.store.dispatch(actionFooter({ footer: jsonData }));
