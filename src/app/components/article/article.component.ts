@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { ContentstackQueryService } from '../../cs.query.service';
 import { Router } from '@angular/router';
 import { SeoService } from '../../seo.service';
@@ -12,7 +12,7 @@ import { actionBlogpost, actionPage } from 'src/app/store/actions/state.actions'
   styleUrls: []
 })
 
-export class ArticleComponent implements OnInit {
+export class ArticleComponent implements OnInit, AfterContentInit {
   constructor(private cs: ContentstackQueryService, private router: Router, private seo: SeoService, private metaTagService: Meta, private store: Store) { }
   page = 'Blog';
   articleContent: any = {};
@@ -56,5 +56,10 @@ export class ArticleComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getEntry();
+  }
+  ngAfterContentInit(): void {
+    this.cs.onEntryChange(() => {
+      this.getEntry();
+    })
   }
 }

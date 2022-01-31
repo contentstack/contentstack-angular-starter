@@ -10,8 +10,17 @@ import { Observable } from 'rxjs';
 export class DevtoolsComponent {
   response$: Observable<any>;
 
-    constructor(private store: Store) { 
-      this.response$ = store.pipe();
+  constructor(private store: Store) {
+    this.response$ = store.pipe();
+  }
+
+  copyJsonObject(event) {
+    try {
+      if(!event.source["_value"])throw "error"
+      navigator.clipboard.writeText(JSON.stringify(event.source["_value"].response)); 
+    } catch (error) {
+      console.error("Not an proper json object to copy", error)
     }
-    
+  }
+
 }

@@ -1,15 +1,23 @@
 <div class='modal fade' id='staticBackdrop' data-bs-backdrop='static' data-bs-keyboard='false' tabIndex='-1'
     aria-labelledby='staticBackdropLabel' aria-hidden='true'>
-    <div class='modal-dialog modal-lg'>
+    <div class='modal-dialog .modal-lg modal-dialog-centered modal-dialog-scrollable'>
         <div class='modal-content'>
             <div class='modal-header'>
                 <h2 class='modal-title' id='staticBackdropLabel'>
-                    Json Response
+                    JSON Preview
                 </h2>
+                <span class="json-copy" (click)="copyJsonObject(response$)">
+                    <img src="/assets/copy.svg" alt="copy icon" />
+                </span>
                 <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
             </div>
             <div class='modal-body'>
-                <ngx-json-viewer [json]="response$ | async" [depth]="1" ></ngx-json-viewer>
+                <ngx-json-viewer [depth]="3" [json]="response$ | async"></ngx-json-viewer>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn tertiary-btn modal-btn" data-bs-dismiss="modal">
+                    Close
+                </button>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { ContentstackQueryService } from '../../cs.query.service';
 import { actionFooter } from 'src/app/store/actions/state.actions';
 import { Store } from '@ngrx/store';
@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
   templateUrl: './footer.component.html',
   styleUrls: []
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, AfterContentInit {
   constructor(private cs: ContentstackQueryService, private store: Store) { }
   footerContent: any = {};
   filterObject(inputObject) {
@@ -33,7 +33,7 @@ export class FooterComponent implements OnInit {
     return inputObject;
   }
   getFooterEntry() {
-    this.cs.getEntry('footer', [],["copyright"]).then(entry => {
+    this.cs.getEntry('footer', [], ["copyright"]).then(entry => {
       this.footerContent = entry[0][0];
       const jsonData = this.filterObject(entry[0][0])
       this.store.dispatch(actionFooter({ footer: jsonData }));
@@ -43,5 +43,10 @@ export class FooterComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getFooterEntry();
+  }
+  ngAfterContentInit(): void {
+    this.cs.onEntryChange(() => {
+      this.getFooterEntry();
+    })
   }
 }
