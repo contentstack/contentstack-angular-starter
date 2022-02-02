@@ -25,13 +25,13 @@ export class ContentstackService {
     }
 
     this.Stack = contentstack.Stack(this.stackConfig);
-    this.Stack.setHost("api.contentstack.io");
+    this.Stack.setHost(config.api_host);
     ContentstackLivePreview.init({
       enable: true,
       ssr: false,
       stackSdk: this.Stack,
       stackDetails: {
-        apiKey: "blt123445",
+        apiKey: config.api_key,
       },
     });
 
