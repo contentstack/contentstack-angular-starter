@@ -23,7 +23,7 @@ export const Config = {
   management_token:'${process.env.CONTENTSTACK_MANAGEMENT_TOKEN}',
   api_host:'${process.env.CONTENTSTACK_API_HOST}',
   app_host:'${process.env.CONTENTSTACK_APP_HOST}',
-  live_preview:${process.env.CONTENTSTACK_LIVE_PREVIEW}
+  live_preview:${process.env.CONTENTSTACK_LIVE_PREVIEW || true}
 };`;
 
 // write the content to the respective file if env exists
