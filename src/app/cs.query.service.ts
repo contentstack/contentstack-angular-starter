@@ -10,9 +10,12 @@ export class ContentstackQueryService {
       return next(node.children);
     },
   }
-  getEntry(contentTypeUid: string, references = [], jsonRtePath = []): Promise<any> {
 
-    return this.cs.stack().ContentType(contentTypeUid)
+  onEntryChange = this.cs.stack().livePreview
+
+  getEntry(contentTypeUid: string, references = [], jsonRtePath = []): Promise<any> {
+    
+    return this.cs.stack().contentstack.ContentType(contentTypeUid)
       .Query()
       .includeReference(references)
       .toJSON()
@@ -31,7 +34,7 @@ export class ContentstackQueryService {
   }
 
   getEntryWithQuery(contentTypeUid: string, { key, value }, references = [], jsonRtePath = []): Promise<any> {
-    return this.cs.stack().ContentType(contentTypeUid)
+    return this.cs.stack().contentstack.ContentType(contentTypeUid)
       .Query()
       .where(key, value)
       .includeReference(references)

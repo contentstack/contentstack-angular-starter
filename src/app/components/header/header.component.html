@@ -2,9 +2,6 @@
   <div class="note-div">
     <span *ngIf="headerContent.notification_bar.show_announcement"
       [innerHTML]="headerContent.notification_bar.announcement_text | sanitizeHtml"></span>
-    <span class="devtools" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-     <img src="/assets/Devtools.gif" alt="Dev tools icon" title="Json Preview"/>
-    </span>
   </div>
   <div class="max-width header-div">
     <div class="wrapper-logo"><a aria-current="page" class="logo-tag" title="Contentstack" href="/"><img class="logo"
@@ -19,5 +16,12 @@
         </li>
       </ul>
     </nav>
+    <div class="json-preview">
+      <span class="tool-tip" data-tip="JSON Preview">
+      <span data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <img src="/assets/json.svg" alt="JSON Preview icon" />
+      </span>
+      </span>
+    </div>
   </div>
 </header>

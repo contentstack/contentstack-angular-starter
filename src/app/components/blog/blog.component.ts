@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { ContentstackQueryService } from '../../cs.query.service';
 import { SeoService } from '../../seo.service';
 import { Meta } from '@angular/platform-browser';
@@ -10,7 +10,7 @@ import { actionBlogpost, actionPage } from 'src/app/store/actions/state.actions'
   templateUrl: './blog.component.html',
   styleUrls: []
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent implements OnInit, AfterContentInit {
   constructor(private cs: ContentstackQueryService, private seo: SeoService, private metaTagService: Meta, private store: Store) { }
   page = 'Blog';
   blogEntry: any = {};
@@ -57,8 +57,15 @@ export class BlogComponent implements OnInit {
   ngOnInit(): void {
     this.getEntry();
   }
+  ngAfterContentInit(): void {
+    this.cs.onEntryChange(() => {
+      this.getEntry();
+    })
+  }
 
   filterBlogTypes(entries) {
+    this.blogContent = [];
+    this.archivedContent=[];
     entries.map(entry => {
       if (entry.is_archived) {
         this.archivedContent.push(entry);

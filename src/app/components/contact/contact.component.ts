@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { ContentstackQueryService } from '../../cs.query.service';
 import { Meta } from '@angular/platform-browser';
 import { SeoService } from '../../seo.service';
@@ -10,7 +10,7 @@ import { actionBlogpost, actionPage } from 'src/app/store/actions/state.actions'
   templateUrl: './contact.component.html',
   styleUrls: []
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent implements OnInit, AfterContentInit {
   constructor(private cs: ContentstackQueryService, private metaTagService: Meta, private seo: SeoService, private store: Store) { }
   page = 'Contacts';
   contactContent: any = {};
@@ -36,7 +36,7 @@ export class ContactComponent implements OnInit {
     return inputObject;
   }
   getEntry() {
-    this.cs.getEntryWithQuery('page', { key: 'url', value: '/contact-us' }, [],[ "page_components.section_with_html_code.description"]).then(entry => {
+    this.cs.getEntryWithQuery('page', { key: 'url', value: '/contact-us' }, [], ["page_components.section_with_html_code.description"]).then(entry => {
       this.contactContent = entry[0][0];
       const jsonData = this.filterObject(entry[0][0]);
       this.store.dispatch(actionPage({ page: jsonData }));
@@ -49,5 +49,10 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEntry();
+  }
+  ngAfterContentInit(): void {
+    this.cs.onEntryChange(() => {
+      this.getEntry();
+    })
   }
 }
