@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { ContentstackQueryService } from '../../cs.query.service';
 import { Meta } from '@angular/platform-browser';
 import { SeoService } from '../../seo.service';
@@ -10,7 +10,7 @@ import { actionBlogpost, actionPage } from 'src/app/store/actions/state.actions'
   templateUrl: './home.component.html',
   styleUrls: []
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterContentInit {
   constructor(private cs: ContentstackQueryService, private metaTagService: Meta, private seo: SeoService, private store: Store) { }
   page = 'Home';
   homeContent: any = {};
@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
       ["page_components.from_blog.featured_blogs.body",
         "page_components.section_with_buckets.buckets.description",]).then(entry => {
           this.homeContent = entry[0][0];
+
           const jsonData = this.filterObject(entry[0][0])
           this.store.dispatch(actionPage({ page: jsonData }));
           this.store.dispatch(actionBlogpost({ blogpost: null }));
@@ -54,5 +55,10 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getEntry();
+  }
+  ngAfterContentInit(): void {
+    this.cs.onEntryChange(() => {
+      this.getEntry();
+    })
   }
 }

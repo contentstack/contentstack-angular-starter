@@ -1,5 +1,4 @@
 <main>
-  <app-devtools></app-devtools>
   <div *ngIf="(pageComponents | json) != '{}'" class="main" attr.data-pageref="{{entryUid}}"
     attr.data-contenttype="{{contentTypeUid}}" attr.data-locale="{{locale}}">
 
@@ -22,4 +21,5 @@
     </div>
 
   </div>
+  <app-devtools></app-devtools>
 </main>
