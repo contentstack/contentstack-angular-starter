@@ -1,10 +1,10 @@
 <div *ngIf="(sectionBuckets | json) != '{}'" class="member-main-section">
   <div class="member-head">
     <h2>{{sectionBuckets.title_h2}}</h2>
-    <p *ngIf="page != 'About'">{{sectionBuckets.description}}</p>
+    <p *ngIf="sectionBuckets.description">{{sectionBuckets.description}}</p>
   </div>
 
-  <div *ngIf="page != 'About'" class="member-section">
+  <div *ngIf="!sectionBuckets.bucket_tabular" class="member-section">
     <div *ngFor="let bucket of sectionBuckets.buckets" class="content-section">
       <img src="{{bucket.icon.url}}" alt="bucket icon">
       <h3>{{bucket.title_h3}}</h3>
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div *ngIf="page === 'About'" class="mission-section">
+  <div *ngIf="sectionBuckets.bucket_tabular" class="mission-section">
     <div class="mission-content-top">
       <div *ngFor="let bucket of sectionBuckets.buckets.slice(2,4)" class="mission-content-section">
         <img class="mission-icon" src="{{bucket.icon.url}}" alt="{{bucket.icon.title}}">
