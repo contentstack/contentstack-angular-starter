@@ -60,8 +60,6 @@ export class BlogComponent implements OnInit, AfterContentInit {
 
   ngOnInit(): void {
     this.getEntry();
-    console.log("entries", this.entries);
-    
   }
   ngAfterContentInit(): void {
     this.cs.onEntryChange(() => {
