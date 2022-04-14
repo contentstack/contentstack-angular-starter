@@ -32,10 +32,33 @@ export class FooterComponent implements OnInit, AfterContentInit {
     }
     return inputObject;
   }
+
+  buildNavigation(ent, ft) {
+    let newFooter = { ...ft };
+    if (ent.length !== newFooter.navigation.link.length) {
+      ent.forEach((entry) => {
+        const fFound = newFooter?.navigation.link.find(
+          (nlink) => nlink.title === entry.title
+        );
+        if (!fFound) {
+          newFooter.navigation.link?.push({
+            title: entry.title,
+            href: entry.url,
+            $: entry.$,
+          });
+        }
+      });
+    }
+    return newFooter;
+  }
+
   getFooterEntry() {
-    this.cs.getEntry('footer', [], ["copyright"]).then(entry => {
-      this.footerContent = entry[0][0];
-      const jsonData = this.filterObject(entry[0][0])
+    Promise.all([
+      this.cs.getEntry('page'),
+      this.cs.getEntry('footer', [], ["copyright"])
+    ]).then(entry => {
+      this.footerContent = this.buildNavigation(entry[0][0], entry[1][0][0]);
+      const jsonData = this.filterObject(this.footerContent)
       this.store.dispatch(actionFooter({ footer: jsonData }));
     }, err => {
       console.log(err, 'err');

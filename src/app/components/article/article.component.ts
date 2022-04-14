@@ -43,6 +43,7 @@ export class ArticleComponent implements OnInit, AfterContentInit {
       this.cs.getEntryWithQuery('page', { key: 'url', value: '/blog' }, []),
       this.cs.getEntryWithQuery('blog_post', { key: 'url', value: this.router.url }, ['author', 'related_post'], ["body", "related_post.body"])
     ]).then(entries => {
+      if (entries[0][0][0].length === 0 || entries[1][0][0].length === 0) { this.router.navigate(["/404"])}
       this.blogContent = entries[0][0][0];
       this.articleContent = entries[1][0][0];
       const pageData = this.filterObject(entries[0][0][0]);
