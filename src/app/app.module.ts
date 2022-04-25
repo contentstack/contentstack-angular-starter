@@ -7,9 +7,7 @@ import { Config, environment } from '../environments/environment';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
-import { AboutComponent } from './components/about/about.component';
 import { BlogComponent } from './components/blog/blog.component';
-import { ContactComponent } from './components/contact/contact.component';
 import { ArticleComponent } from './components/article/article.component';
 import { RenderComponent } from './components/render-components/render.components';
 import { HeroComponent } from './components/modular-block/hero/hero.component';
@@ -22,7 +20,7 @@ import { TeamComponent } from './components/modular-block/team/team.component';
 import { SanitizeHtmlPipe } from 'src/modules/SanitizeHtmlPipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { StoreModule } from '@ngrx/store';
-import {stateReducer} from './store/reducers/state.reducer';
+import { stateReducer } from './store/reducers/state.reducer';
 import { DevtoolsComponent } from './components/devtools/devtools.component';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
@@ -32,9 +30,7 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
     FooterComponent,
     HeaderComponent,
     HomeComponent,
-    AboutComponent,
     BlogComponent,
-    ContactComponent,
     ArticleComponent,
     RenderComponent,
     HeroComponent,

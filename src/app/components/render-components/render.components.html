@@ -3,9 +3,8 @@
     attr.data-contenttype="{{contentTypeUid}}" attr.data-locale="{{locale}}">
 
     <div *ngFor="let component of pageComponents">
-
-      <app-hero *ngIf="component.hero_banner" [page]=page [hero]=component.hero_banner> </app-hero>
-
+      <app-hero *ngIf="component.hero_banner" [page]=page [hero]=component.hero_banner>
+      </app-hero>
       <app-content *ngIf="component.section" [content]=component.section> </app-content>
 
       <app-buckets *ngIf="component.section_with_buckets" [page]=page [sectionBuckets]=component.section_with_buckets>

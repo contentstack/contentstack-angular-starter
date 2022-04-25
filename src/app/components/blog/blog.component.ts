@@ -13,6 +13,7 @@ import { actionBlogpost, actionPage } from 'src/app/store/actions/state.actions'
 export class BlogComponent implements OnInit, AfterContentInit {
   constructor(private cs: ContentstackQueryService, private seo: SeoService, private metaTagService: Meta, private store: Store) { }
   page = 'Blog';
+  entries=[];
   blogEntry: any = {};
   blogContent: any = [];
   archivedContent: any = [];
@@ -20,6 +21,7 @@ export class BlogComponent implements OnInit, AfterContentInit {
     const unWantedProps = [
       "uid",
       "_version",
+      "_owner",
       "ACL",
       "_in_progress",
       "created_at",
@@ -42,10 +44,12 @@ export class BlogComponent implements OnInit, AfterContentInit {
       this.cs.getEntryWithQuery('page', { key: 'url', value: '/blog' }),
       this.cs.getEntry('blog_post', ['author', 'related_post'], ["body"])
     ]).then(entries => {
+      this.entries = entries;
       this.blogEntry = entries[0][0][0];
       this.filterBlogTypes(entries[1][0]);
       const pageData = this.filterObject(entries[0][0][0])
       const blogData = this.filterObject(entries[1][0])
+
       this.store.dispatch(actionPage({ page: pageData }));
       this.store.dispatch(actionBlogpost({ blogpost: blogData }));
       if (this.blogEntry.seo) { this.seo.getSeoField(this.blogEntry.seo, this.metaTagService); }
@@ -65,7 +69,7 @@ export class BlogComponent implements OnInit, AfterContentInit {
 
   filterBlogTypes(entries) {
     this.blogContent = [];
-    this.archivedContent=[];
+    this.archivedContent = [];
     entries.map(entry => {
       if (entry.is_archived) {
         this.archivedContent.push(entry);
