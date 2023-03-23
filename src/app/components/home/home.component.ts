@@ -41,8 +41,8 @@ export class HomeComponent implements OnInit, AfterContentInit {
     this.cs.getEntryWithQuery('page', { key: 'url', value: this.router.url },
       ['page_components.from_blog.featured_blogs'],
       ["page_components.from_blog.featured_blogs.body",
-        "page_components.section_with_buckets.buckets.description",]).then(entry => {
-          if (entry[0].length === 0) { this.router.navigate(["/404"])}
+        "page_components.section_with_buckets.buckets.description", "page_components.section_with_html_code.description"]).then(entry => {
+          if (entry[0].length === 0) { this.router.navigate(["/404"]) }
           this.homeContent = entry[0][0];
           const jsonData = this.filterObject(entry[0][0])
           this.store.dispatch(actionPage({ page: jsonData }));
