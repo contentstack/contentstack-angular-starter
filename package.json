@@ -1,9 +1,9 @@
 {
   "name": "@contentstack/contentstack-angular-starter-app",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "scripts": {
     "ng": "ng",
-    "start": "npm run config && ng serve --port 3000",
+    "start": "npm run config && ng serve",
     "build": "npm run config && npm run ng build",
     "lint": "ng lint",
     "config": "ts-node setenv.ts"

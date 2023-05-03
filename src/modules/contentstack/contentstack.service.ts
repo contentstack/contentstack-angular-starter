@@ -12,6 +12,8 @@ export class ContentstackService {
       api_key: config.api_key,
       delivery_token: config.delivery_token,
       environment: config.environment,
+      branch: config.branch,
+      region: config.region,
       live_preview: {
         enable: config.live_preview,
         management_token: config.management_token,
@@ -22,7 +24,7 @@ export class ContentstackService {
         apiKey: config.api_key,
         environment: config.environment,
       },
-    }
+    };
 
     this.Stack = contentstack.Stack(this.stackConfig);
     this.Stack.setHost(config.api_host);
@@ -34,10 +36,12 @@ export class ContentstackService {
         apiKey: config.api_key,
       },
     });
-
   }
 
   public stack() {
-    return { contentstack: this.Stack, livePreview: ContentstackLivePreview.onEntryChange };
+    return {
+      contentstack: this.Stack,
+      livePreview: ContentstackLivePreview.onEntryChange,
+    };
   }
 }
