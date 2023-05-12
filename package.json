@@ -21,7 +21,7 @@
     "@angular/service-worker": "^14.2.0",
     "@contentstack/live-preview-utils": "^1.1.0",
     "@contentstack/utils": "^1.1.2",
-    "@ngrx/store": "^14.3.0",
+    "@ngrx/store": "^15.3.0",
     "contentstack": "^3.15.3",
     "ngx-json-viewer": "^3.1.0",
     "rxjs": "^7.5.6",
