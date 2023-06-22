@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import * as contentstack from 'contentstack';
 import { Config } from './config';
 import ContentstackLivePreview from '@contentstack/live-preview-utils';
+import { customHostUrl, isValidCustomHostUrl } from "./utils";
 
 @Injectable()
 export class ContentstackService {
   Stack: any = {};
   stackConfig: any = {};
+  customHostUrl: string="";
   constructor(private config: Config) {
     this.stackConfig = {
       api_key: config.api_key,
@@ -25,11 +27,13 @@ export class ContentstackService {
         environment: config.environment,
       },
     };
-
+    this.customHostUrl = customHostUrl(config.api_host);
     this.Stack = contentstack.Stack(this.stackConfig);
-    this.Stack.setHost(config.api_host);
+    if (isValidCustomHostUrl(this.customHostUrl)) {
+      this.Stack.setHost(this.customHostUrl);
+    }
     ContentstackLivePreview.init({
-      enable: true,
+      enable: config.live_preview === "true",
       ssr: false,
       stackSdk: this.Stack,
       stackDetails: {
