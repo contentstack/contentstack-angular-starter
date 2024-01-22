@@ -18,8 +18,8 @@ export class ContentstackService {
       region: config.region,
       live_preview: {
         enable: config.live_preview,
-        management_token: config.management_token,
-        host: config.api_host,
+        preview_token: config.preview_token,
+        host: config.preview_host,
         ssr: false,
       },
       stackDetails: {
@@ -27,18 +27,14 @@ export class ContentstackService {
         environment: config.environment,
       },
     };
-    this.customHostUrl = customHostUrl(config.api_host);
+    this.customHostUrl = config.api_host? customHostUrl(config.api_host):"";
     this.Stack = contentstack.Stack(this.stackConfig);
-    if (isValidCustomHostUrl(this.customHostUrl)) {
+    if (this.customHostUrl && isValidCustomHostUrl(this.customHostUrl)) {
       this.Stack.setHost(this.customHostUrl);
     }
     ContentstackLivePreview.init({
-      enable: config.live_preview === "true",
       ssr: false,
       stackSdk: this.Stack,
-      stackDetails: {
-        apiKey: config.api_key,
-      },
     });
   }
 
