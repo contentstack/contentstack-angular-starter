@@ -9,6 +9,7 @@ export class Config {
   region: string;
   api_host: string;
   app_host: string;
-  management_token: string;
+  preview_token: string;
+  preview_host: string;
   live_preview: string | boolean;
 }

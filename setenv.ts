@@ -22,7 +22,8 @@ export const Config = {
   environment: '${process.env.CONTENTSTACK_ENVIRONMENT}',
   branch: '${process.env.CONTENTSTACK_BRANCH || 'main'}',
   region: '${process.env.CONTENTSTACK_REGION || 'us'}',
-  management_token:'${process.env.CONTENTSTACK_MANAGEMENT_TOKEN}',
+  preview_token:'${process.env.CONTENTSTACK_PREVIEW_TOKEN}',
+  preview_host:'${process.env.CONTENTSTACK_PREVIEW_HOST}',
   api_host:'${process.env.CONTENTSTACK_API_HOST}',
   app_host:'${process.env.CONTENTSTACK_APP_HOST}',
   live_preview:${process.env.CONTENTSTACK_LIVE_PREVIEW || true}
