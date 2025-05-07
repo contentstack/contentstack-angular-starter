@@ -9,7 +9,7 @@
     "config": "ts-node setenv.ts"
   },
   "engines": {
-    "node": "^14 || ^16"
+    "node": ">=18.0.0"
   },
   "license": "MIT",
   "author": "Contentstack",
