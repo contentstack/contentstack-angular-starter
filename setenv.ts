@@ -11,6 +11,12 @@ const stackConfig = {
   branch: process.env.CONTENTSTACK_BRANCH || 'main',
   region: process.env.CONTENTSTACK_REGION || 'us',
 };
+
+// Calculate preview_host from app_host if available and preview_host is not explicitly set
+const appHost = process.env.CONTENTSTACK_APP_HOST;
+const previewHost = process.env.CONTENTSTACK_PREVIEW_HOST || 
+                   (appHost ? appHost.replace('app', 'rest-preview') : undefined);
+
 const environmentFileContent = `
 export const environment = {
   production: true
@@ -23,7 +29,7 @@ export const Config = {
   branch: '${process.env.CONTENTSTACK_BRANCH || 'main'}',
   region: '${process.env.CONTENTSTACK_REGION || 'us'}',
   preview_token:'${process.env.CONTENTSTACK_PREVIEW_TOKEN}',
-  preview_host:'${process.env.CONTENTSTACK_PREVIEW_HOST}',
+  preview_host:'${previewHost}',
   api_host:'${process.env.CONTENTSTACK_API_HOST}',
   app_host:'${process.env.CONTENTSTACK_APP_HOST}',
   live_preview:${process.env.CONTENTSTACK_LIVE_PREVIEW || true}
